@@ -18,6 +18,10 @@ function PrivatePing () {
         }
       })
       const data = await response.json()
+      if (data.error) {
+        setMessage(data.error)
+        return
+      }
       setMessage(data.msg)
     } catch (error) {
       console.log(error)
