@@ -12,7 +12,7 @@ function PrivatePing () {
   const privatePing = async () => {
     try {
       const token = await getAccessTokenSilently()
-      const response = await fetch('http://localhost:4000/user/private', {
+      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/user/private`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

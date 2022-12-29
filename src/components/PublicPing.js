@@ -8,7 +8,7 @@ function PublicPing () {
   const { setMessage } = useContext(MessageContext)
   const publicPing = async () => {
     try {
-      const response = await fetch('http://localhost:4000/user/public')
+      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/user/public`)
       const data = await response.json()
       setMessage(data.msg)
     } catch (error) {
