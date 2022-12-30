@@ -1,8 +1,11 @@
 import { useContext } from 'react'
 import { MessageContext } from '../../context/MessageConext'
+
 import LogoutButton from '../../components/LogoutButton'
 import PublicPing from '../../components/PublicPing'
+import SaveImageToCloudinaryButton from '../../components/SaveImageToCloudinaryButton'
 import PrivatePing from '../../components/PrivatePing'
+import GetImageButton from '../../components/GetImageButton'
 import { useAuth0 } from '@auth0/auth0-react'
 import Container from '@mui/material/Container'
 import Box from '@mui/material/Box'
@@ -22,7 +25,6 @@ const theme = createTheme()
 function Home () {
   const { isLoading, user } = useAuth0()
   const { message } = useContext(MessageContext)
-  console.log(message)
 
   if (isLoading) {
     return <p>Loading...</p>
@@ -46,11 +48,12 @@ function Home () {
             marginTop: 50,
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center'
+            alignItems: 'center',
+            gap: '1rem'
           }}
         >
 
-          <Card sx={{ maxWidth: 345 }}>
+          <Card sx={{ maxWidth: 345, border: '2px solid black' }}>
             <CardHeader
               avatar={
                 <Avatar sx={{ bgcolor: red[500] }} aria-label='recipe' src={user.picture} />
@@ -66,14 +69,18 @@ function Home () {
                 {message.length > 1 ? message : 'Pending...'}
               </Typography>
             </CardContent>
-
             <CardActions disableSpacing>
               <PublicPing />
               <PrivatePing />
               <LogoutButton />
-
             </CardActions>
+          </Card>
 
+          <Card sx={{ width: 240, border: '2px solid black' }}>
+            <CardActions disableSpacing sx={{ display: 'flex', alignContent: 'center' }}>
+              <GetImageButton />
+              <SaveImageToCloudinaryButton />
+            </CardActions>
           </Card>
         </Box>
       </Container>
