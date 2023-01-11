@@ -6,7 +6,7 @@ import { updateUserImage } from '../services/user'
 import { useAuth0 } from '@auth0/auth0-react'
 import { ImageContext } from '../context/ImageContext'
 
-function SaveImageToCloudinaryButton ({ data }) {
+function SaveImageToCloudinaryButton () {
   const { getAccessTokenSilently } = useAuth0()
   const { image } = useContext(ImageContext)
 
@@ -18,7 +18,7 @@ function SaveImageToCloudinaryButton ({ data }) {
 
   return (
     <Tooltip title='Save to Cloudinary'>
-      <IconButton aria-label='upload image' component='label' onClick={() => handleUpload(data)}>
+      <IconButton aria-label='upload image' component='label' onClick={() => handleUpload()}>
         <CloudCircleIcon />
       </IconButton>
     </Tooltip>

@@ -1,7 +1,6 @@
 import { useState, useContext } from 'react'
 import { MessageContext } from '../../context/MessageConext'
 import Tooltip from '@mui/material/Tooltip'
-import PhotoCamera from '@mui/icons-material/PhotoCamera'
 import IconButton from '@mui/material/IconButton'
 import LogoutButton from '../../components/LogoutButton'
 import PublicPing from '../../components/PublicPing'
@@ -16,12 +15,13 @@ import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
 import CardActions from '@mui/material/CardActions'
 import Avatar from '@mui/material/Avatar'
+import AttachFileIcon from '@mui/icons-material/AttachFile'
 
 import { red } from '@mui/material/colors'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
-import { updateUserImageWithFormData } from '../../services/user'
+import { updateUserImageWithFormData, uploadAudioFile } from '../../services/user'
 import '../../App.css'
 
 const theme = createTheme()
@@ -94,21 +94,29 @@ function Home () {
           </Card>
           <Card sx={{ width: 290, border: '2px solid black' }}>
             <CardHeader
-              title='Upload Image using FormData'
-
+              title='Upload Image or Audio File using FormData'
             />
             <CardActions disableSpacing sx={{ display: 'flex', alignContent: 'center' }}>
-              <Tooltip title='Upload New Image'>
+
+              <Tooltip title='Upload New Image or Audio File'>
                 <IconButton aria-label='upload image' component='label'>
-                  <input hidden accept='image/*' type='file' onChange={(e) => setImage(e.target.files[0])} />
-                  <PhotoCamera />
+                  <input hidden accept='image/*, audio/*' type='file' onChange={(e) => setImage(e.target.files[0])} />
+                  <AttachFileIcon />
                 </IconButton>
               </Tooltip>
-              <Tooltip title='Save to Cloudinary'>
+
+              <Tooltip title='Save Image to Cloudinary'>
                 <IconButton aria-label='upload image' component='label' onClick={() => updateUserImageWithFormData(image)}>
                   <CloudUploadIcon />
                 </IconButton>
               </Tooltip>
+
+              <Tooltip title='Save Audio File to Cloudinary'>
+                <IconButton aria-label='upload image' component='label' onClick={() => uploadAudioFile(image)}>
+                  <CloudUploadIcon />
+                </IconButton>
+              </Tooltip>
+
             </CardActions>
           </Card>
         </Box>

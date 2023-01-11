@@ -29,9 +29,9 @@ function GetImageButton () {
 
   return (
     <>
-      <Tooltip title='Upload New Image'>
+      <Tooltip title='Upload New Image or Audio file'>
         <IconButton aria-label='upload image' component='label'>
-          <input hidden accept='image/*' type='file' onChange={(e) => handleImageUpload(e.target.files[0])} />
+          <input hidden accept='image/*, audio/*' type='file' onChange={(e) => handleImageUpload(e.target.files[0])} />
           <PhotoCamera />
         </IconButton>
       </Tooltip>
