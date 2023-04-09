@@ -10,7 +10,8 @@ import Container from '@mui/material/Container'
 import LoginButton from '../../components/LoginButton'
 
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-import { useAuth0 } from '@auth0/auth0-react'
+
+import FirebaseLoginButton from '../../components/FirebaseLoginButton'
 
 function Copyright (props) {
   return (
@@ -32,9 +33,6 @@ function Copyright (props) {
 const theme = createTheme()
 
 export default function SignIn () {
-  const { user } = useAuth0()
-  console.log(user)
-  console.log(window.location.origin)
   return (
     <ThemeProvider theme={theme}>
       <Container
@@ -64,6 +62,7 @@ export default function SignIn () {
           </Typography>
 
           <LoginButton />
+          <FirebaseLoginButton />
 
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
